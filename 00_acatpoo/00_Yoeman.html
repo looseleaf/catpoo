@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<title>00_Yoeman</title>
+<xmp theme="united" style="display:none;">
+# INTENT: Yoeman install for catpoo
+I wanted to enforce as much automation and pattern re-use as possible, so lets use yoeman pattern generation to start off.
+
+###### From-> [README](README.html) To-> [00_Yoeman](00_Yoeman.html)
+
+## Pre-Yoeman
+ - was getting "npm ERR cb() never called" ... so I went updating
+ - Update [nodejs](http://nodejs.org) (v0.10.17) click install
+ - sudo npm cache clear
+ - node -v (sb v0.10.17)
+ - npm -v (sb 1.3.9)
+ - sudo npm update -g
+ - Now I've got "npm ERR! not ok code 0" 
+ - OK... on a nuk'n bend...
+   - cd /usr/local/bin
+   - ls -alu
+   - first nuke node_modules (sudo rm -rf ../lib/node_modules)
+   - try npm -v should get not found
+   - now nuke the old links
+   - should only node remain... nuke it...
+   - try node -v should get error
+ - Now... reinstall node from package
+ - restart a term... somehow the term session did not see it...
+ - sudo npm update -g (now works)
+ - move on to Yoeman install
+
+## Yoeman [Install](http://yeoman.io)
+ - sudo npm install -g yo
+ - sudo npm install -g generator-angular
+ - sudo npm install -g generator-karma
+ - (make sure you in catpoo)
+ - yo angular (start generator)
+   - Y to Twitter Bootstrap
+   - Y to SCSS (twitter version)
+   - Include angular-resource.js, angular-cookies.js, angular-sanitize.js (default green)
+ - yo should generate files and do a build... I think.. I got 'wierd error'
+ - Got some wierdness I think it's because I attempted the SCSS so skip that for now
+ - NUKE it all and start over...
+  - yo angular (start generator)
+   - Y to Twitter Bootstrap
+   - n to SCSS (twitter version)
+   - n to Include angular-resource.js, angular-cookies.js, angular-sanitize.js (default green)
+ - Still got the strageness with 1) pngquant should return path to pngquant binary:
+ - BUT the server thing worked when I did: 'grunt server'
+ - The grunt server puts a watch on files and lights up a browser window... so that should be active
+
+ ## Git e up
+  - After thinking about it... I want to move the 'doc' out away from yoeman stuff
+  - humm... create a dir and move it into 00_acatpoo
+  - ok... git e up
+  - If you have not... config git [gitconfig](http://git-scm.com/book/ch7-1.html)
+  - git config --global user.name "Chris Trees"
+  - git config --global user.email "christrees@yahoo.com"
+  - git config --global core.editor vi
+  - .gitmessage.txt (I keep in home) see [GitCommitMessages](https://wiki.openstack.org/wiki/GitCommitMessages)
+  - git config --global commit.template $HOME/.gitmessage.txt
+  - Now, init our new dir
+  - git init
+  - git add *
+  - git commit -m ""
+  
+
+###### From-> [00_Yoeman](00_Yoeman.html) To-> [00_Angular_CCC_consumeNav](00_Angular_CCC_consumeNav.html)
+
+</xmp>
+<script src="strapdown.js"></script>
+</html> 
