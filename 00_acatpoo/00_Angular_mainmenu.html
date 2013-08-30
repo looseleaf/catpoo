@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<title>00_Angular_mainmenu</title>
+<xmp theme="united" style="display:none;">
+###### From-> [00_Angular_CCCNav](00_Angular_CCCNav.html) To-> [00_Angular_mainmenu](00_Angular_mainmenu.html)
+
+## 00_Angular_mainmenu - display page
+This was intended for the user context content mainmenu.
+
+### Create the angular pattern for new route/view/controller
+```
+catmini:catpoo cat$ yo angular:route mainmenu.html
+   invoke   angular:controller:/usr/local/lib/node_modules/generator-angular/route/index.js
+   create     app/scripts/controllers/mainmenu.html.js
+   create     test/spec/controllers/mainmenu.html.js
+   invoke   angular:view:/usr/local/lib/node_modules/generator-angular/route/index.js
+   create     app/views/mainmenu.html.html
+catmini:catpoo cat$ 
+```
+Woops... should have not put the .html... just go do it again
+```
+catmini:catpoo cat$ yo angular:route mainmenu
+   invoke   angular:controller:/usr/local/lib/node_modules/generator-angular/route/index.js
+   create     app/scripts/controllers/mainmenu.js
+   create     test/spec/controllers/mainmenu.js
+   invoke   angular:view:/usr/local/lib/node_modules/generator-angular/route/index.js
+   create     app/views/mainmenu.html
+catmini:catpoo cat$ 
+```
+We'll need to clean out the crap... but also takes us through the routes crap.
+
+### Cleanup and look at Routes
+ 1. Remove files:
+  - app/scripts/controllers/mainmenu.html.js
+  - test/spec/controllers/mainmenu.html.js
+  - app/views/mainmenu.html.html
+ 2. Remove bad route in app/scripts/app.js (I commented out the route with view mainmenu.html.html)
+
+### Large icon main menu list creation
+ - So, the idea with the main menu is a jump point (content nav) we may need to re-name some of this stuff to align to the ccc structure.
+ - First I looked up what Windows 8 metro guides were setting icon sizes to.
+    - [Windows8 UI](http://msdn.microsoft.com/en-us/library/windows/desktop/aa511280.aspx#size) Applicaitons icons and Control Panel items
+    - App and Ctrl: 16x16, 32x32, 48x48, 256x256 
+    - Other types too... but that's good for us
+ - Next I pulled in [holder.js](http://imsky.github.io/holder/) so I can generate the png
+ - Have holder.js generate those png in index.html and saved each size to app/styles/thename.png 
+ - see CATNOTE_THUMBNAILVIEW_TESTING in app/index.html 
+ - Now use the bootstrap [Thumbnails](http://getbootstrap.com/2.3.2/components.html#media) pattern for mainmenu.html
+ - OK, we now can nav between mainmenu.html and main.html
+ - Now lets create a data object so the scope can generate the mainmenu.html list items
+ 
+### Use Angular to generate view from an object in $scope
+  - Really everything is a list ;-) on the mainmenu we want a list of user context in big f'n squares (navigation)
+  - First we create the list object in the controller and append it to $scope.mmnav = []
+  - Then we can use that object to itterate using ng-repeat and pull the name and description from the scope as it itterates
+  - All the redisplay and eventing stuff is 'handled'
+
+### NEXT - Repeat the route/view/controller pattern a few times with a few generic patterns
+
+###### From-> [00_Angular_mainmenu](00_Angular_mainmenu.html) To-> [00_Angular_rvcpatterns](00_Angular_rvcpatterns.html)
+</xmp>
+<script src="strapdown.js"></script>

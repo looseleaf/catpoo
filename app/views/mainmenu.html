@@ -1,0 +1,11 @@
+<p>This is the mainmenu view.</p>
+
+<ul class="thumbnails">
+  <li ng-repeat="mmnav in mmnavs" class="span4">
+    <a href="#/{{mmnav.routename}}" class="thumbnail">
+      <img src="./styles/metro256x256.png" alt="">
+      <h3>{{mmnav.name}}</h3>
+      <p>{{mmnav.description}}</p>
+    </a>
+  </li>
+ </ul>

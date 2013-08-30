@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<title>Angular_CCCNav</title>
+<xmp theme="united" style="display:none;">
+###### Home: [README](README.html) From-> [00_Yoeman](00_Yoeman.html) To-> [00_Angular_CCCNav](00_Angular_CCCNav.html)
+
+# INTENT: Angular_CCCNav the top navigation bar with
+So I wanted to setup a navagation pattern (CCC)
+
+## Layout
+Layout is really about context, that is controlling the focus of the eye through visual que's (symbols and positioning).  That said, really we have 2 basic things with a webpage - view and navigation.  Complexity is really because positioning patterns are varible.... blah blah anyway I'm just going to set some rules and reasons... sticking with the 'triangle of communication'
+
+### Content Context
+ - Content view (center of page) - cause everybody thinks as a page.
+ - Content nav (left bar) - left margin because most people are right hand, so left margin is close to the thumb they hold the device with
+ - Content tools (right bar) - right because that's where your right hand is... and most people use right hand to 'modify' (colapsable content tool bar)
+
+### Content Consume (User)
+ - Consume nav (top bar) - top margin for user info, alerts people expect in the browser... and nav out of context
+ - Consume view (top bar icon)
+ - Consum tools (top bar icon)
+
+### Content Comment (user communications about content with context meta-data for future consumption)
+ - Comment nav (typically a touch of the content)
+ - Comment view (typically activated by comment nav)
+ - Comment tools (typically tools activated as context is now the comment)
+
+### Puting this into Angular
+So the concept is that the nav bars are about 'context switching'.  So really they are modules with 'lists of contextually alike switches'.
+
+## CCC module into Angular
+We want a top nav bar... this will be the user context (consumption endpoint) I'm going to use the idea of a 'user link nav list' but keeping it as simple as possible.
+
+### Content Consume (user) Nav list (top) (these are account control user uniques)
+ 1. Login / Logout (power button icon)
+ 2. Account (person icon)
+ 3. Preferences (gear icon)
+ 4. Notifications ()
+ 5. Contacts ()
+ 6. Home (top left) - ties into (top left) of Content Context Nav
+
+#### Create angular components
+I'm not total sold on how yoeman sets everything up... but for now I'll keep with it.  BUT I'm going to hack in some files and I'm not sure how it might effect other build things, guess we'll find out as we go.  So, I'm going to put bootstrap based navbar into the index.html.  This means I need no 'routes' (as it's outside the ng-view injection element).  I will add a controller so I can set some scope things.
+
+ 1. Create the html template (app/views/cccnav.tmpl.html) - not used right now, I had intended to create a template injection but later
+ 2. Copy the html in template to index.html
+ 3. Create the controller in app/scripts/controllers/cccnav.js
+ 4. Include -script src="scripts/controllers/cccnav.js"--/script- in index.html
+
+Now I had to hack on some bootstrap / yoemen stuff
+
+ 1. Hack out all the bootstrap.js stuff in index.html
+ 2. Pull in link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" in index.html
+ 3. Pull in script src="lib/angular/ui-bootstrap-tpls-0.5.0.min.js" (so I don't have to use jQuery)
+ 4. Hack out the jQuery in index.html
+
+### Content Context Nav List (left side) 
+These change pages into the binder object contexts (like the tabs on a browser). This list keeps colapsing down and can iconize to top menu
+ 1. Home (top Left) User 'index' of binder subject matter.
+ 2. binder object icon
+ 3. binder object icon
+
+
+###### From-> [00_Angular_CCCNav](00_Angular_CCCNav.html) To-> [00_Angular_mainmenu](00_Angular_mainmenu.html)
+</xmp>
+<script src="strapdown.js"></script>

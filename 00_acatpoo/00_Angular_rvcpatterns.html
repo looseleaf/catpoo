@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<title>00_Angular_rvcpatterns</title>
+<xmp theme="united" style="display:none;">
+###### From-> [00_Angular_mainmenu](00_Angular_mainmenu.html) To-> [00_Angular_rvcpatterns](00_Angular_rvcpatterns.html)
+## Repeat the route/view/controller pattern a few times with a few generic patterns
+OK, lets repeat that pattern for Projects and Tasks so we build up the data model we really need.  The overall 'binding' data-model is what I'm shooting for as this is how I think we'll eventually control object sync.  But for now lets just work the patterns.
+
+### Projects
+ 1. Do the yo angular:route projects
+```
+ catmini:catpoo cat$ yo angular:route projects
+   invoke   angular:controller:/usr/local/lib/node_modules/generator-angular/route/index.js
+   create     app/scripts/controllers/projects.js
+   create     test/spec/controllers/projects.js
+   invoke   angular:view:/usr/local/lib/node_modules/generator-angular/route/index.js
+   create     app/views/projects.html
+catmini:catpoo cat$ 
+```
+ 2. Hook the route up in the mainmenu object model (put projects in the routename: "projects")
+ 3. Click away (go from Home -> Projects )... we are nav'n
+ 4. Now the Projects view I think we want sortable bootstrap listview
+ 5. OH.. so angular-ui and ui-bootstrap may be the same thing.  They were spliting up angularjs to be more modular so....
+ 6. SO, I should have ran the bower install --save angular-ui ... but [UI Bootstrap](http://angular-ui.github.io/bootstrap/) .. I'm confused
+ 7. My 'non-organized' hack is working... so I'm going to keep moving.
+ 8. [Paper-Size](http://en.wikipedia.org/wiki/Paper_size) A4 aspect ratio 210x297mm so lets use that as an icon px
+
+### REST API (local routes)
+I like the use of ```#``` to define local views in the URL, to me that way the URL is a visable chain of authority (domain, serverpath, clientpath) so the 'new' crap using (I forget what) to eliminate the ```#``` I'm not interested in, but local REST based URL for local nested routes I think is worthwile.  So if #/projects gets list of projects then #/projects/:workorder should get a project view.  Lets attempt that.
+
+ 1. Do the yo angular:route projects/:workorder
+ ```
+catmini:catpoo cat$ yo angular:route projects/:workorder
+   invoke   angular:controller:/usr/local/lib/node_modules/generator-angular/route/index.js
+   create     app/scripts/controllers/projects/:workorder.js
+   create     test/spec/controllers/projects/:workorder.js
+   invoke   angular:view:/usr/local/lib/node_modules/generator-angular/route/index.js
+   create     app/projects/:workorder.html
+catmini:catpoo cat$ 
+```
+ 2. Well, that didn't work quite as I expected... and now the ghost of yoeman file structure is also showing...
+   - I'm just going to hack and move shit around for now... but on the next re-write we should select out of the below
+   - A very good discussion thread on file structures [Issues109](https://github.com/yeoman/generator-angular/issues/109)
+   - Another yeoman Generator [generator-cg-angular](https://github.com/jwanga/angular-sprout/tree/master/app)
+   - Example [angular-sprout](https://github.com/jwanga/angular-sprout/tree/master/app)
+   - Alternative kickstarter [ngBoilerplate](https://github.com/joshdmiller/ng-boilerplate)
+ 3. Hacking the yo poo
+   - Take the ```:``` out of :workorder.js in app/scripts/controllers/projects/:workorder.js filename
+   - Take the ```projects/:``` out of templateUrl in app/app.js route
+   - move app/projects/:workorder.html to app/views/workorder.html and remove app/projects
+   - in app/index.html remove ```:``` in src="scripts/controllers/projects/:workorder.js
+
+### Now things get layered
+So now we use the url to access a detail view.  We do that by passing the angular built-in $routeParmas to the ProjectWorkorderCtrl controller so I passed and displayed the workorder var.  The construction of all this is very API'ish though we are really using an 'internal' data repo (the cache).  Now we need to begin that internal construction. 
+
+### Angular model abstraction
+The thing I like about angular is it is the closest framework that I've seen that follows the 'working cache' model.  The working cache idea is that 'you grab your own copy'... read it for the view... the scope deals with common 'sync' issues, thus wiring up a lot of the work of updates through data binding.  Anyway... Read is easy (our static JSON defines) 
+
+... I' tired... and have to push this so stopping... next I want to build the abstraction model into a service (I think service is what I want to put it into)
+
+###### From-> [00_Angular_rvcpatterns](00_Angular_rvcpatterns.html) To-> [00_Angular_rvcpatterns](00_Angular_.html)
+</xmp>
+<script src="strapdown.js"></script>
